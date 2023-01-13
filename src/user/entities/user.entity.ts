@@ -1,4 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { LoginType } from '../type/login-type.type';
 
 @Entity()
 export class User {
@@ -21,7 +22,7 @@ export class User {
   email: string;
 
   @Column({ name: 'login_type', type: 'varchar', length: 20, nullable: false })
-  loginType: loginType;
+  loginType: LoginType;
 
   @Column({ type: 'varchar', length: 300, nullable: true })
   password: string;

@@ -11,7 +11,7 @@ export class LoginUserDto {
   readonly userId: string;
   @ApiProperty({
     description: 'password',
-    default: '2134',
+    default: 'password',
     type: String,
   })
   @IsNotEmpty()
