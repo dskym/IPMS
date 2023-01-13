@@ -14,6 +14,16 @@ async function bootstrap() {
     .setDescription('IPMS API Description.')
     .setVersion('1.0')
     .addTag('IPMS')
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        name: 'JWT',
+        description: 'JWT Access Token',
+        in: 'header',
+      },
+      'token',
+    )
     .build();
 
   const document = SwaggerModule.createDocument(app, swaggerConfig);

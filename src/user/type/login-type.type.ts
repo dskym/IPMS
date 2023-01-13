@@ -1,1 +1,1 @@
-type loginType = 'local' | 'google';
+export type LoginType = 'local' | 'google';
