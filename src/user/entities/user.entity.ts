@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Bot } from 'src/bot/entities/bot.entities';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { LoginType } from '../type/login-type.type';
 
 @Entity()
@@ -26,4 +27,7 @@ export class User {
 
   @Column({ type: 'varchar', length: 300, nullable: true })
   password: string;
+
+  @OneToMany(() => Bot, (bot) => bot.user)
+  bots: Bot[];
 }
