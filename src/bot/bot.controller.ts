@@ -10,6 +10,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { SlackService } from 'nestjs-slack';
 import { JwtAuthGuard } from 'src/auth/guard/jwt-auth.guard';
 import { CurrentUser } from 'src/common/decorator/user.decorator';
 import { User } from 'src/user/entities/user.entity';
@@ -22,7 +23,10 @@ import { UpdateBotDto } from './dto/update-bot.dto';
 @ApiBearerAuth('token')
 @ApiTags('봇 API')
 export class BotController {
-  constructor(private botService: BotService) {}
+  constructor(
+    private botService: BotService,
+    private slackService: SlackService,
+  ) {}
 
   @Put(':botId/start')
   @ApiOperation({
@@ -33,6 +37,7 @@ export class BotController {
     @CurrentUser() user: User,
     @Param('botId', ParseIntPipe) botId: number,
   ) {
+    this.slackService.sendText('Bot Start');
     return await this.botService.startBot(user, botId);
   }
 
@@ -45,6 +50,7 @@ export class BotController {
     @CurrentUser() user: User,
     @Param('botId', ParseIntPipe) botId: number,
   ) {
+    this.slackService.sendText('Bot Stop');
     return await this.botService.stopBot(user, botId);
   }
 
