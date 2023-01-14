@@ -5,6 +5,8 @@ import { DataSource } from 'typeorm';
 import { AuthModule } from './auth/auth.module';
 import { User } from './user/entities/user.entity';
 import { UserModule } from './user/user.module';
+import { BotModule } from './bot/bot.module';
+import { Bot } from './bot/entities/bot.entities';
 
 const envConfig = {
   envFilePath: `.${process.env.NODE_ENV}.env`,
@@ -19,11 +21,12 @@ const envConfig = {
       username: 'root',
       password: 'ipms1234',
       database: 'ipms',
-      entities: [User],
+      entities: [User, Bot],
     }),
     ConfigModule.forRoot(envConfig),
     UserModule,
     AuthModule,
+    BotModule,
   ],
 })
 export class AppModule {
