@@ -7,6 +7,7 @@ import { User } from './user/entities/user.entity';
 import { UserModule } from './user/user.module';
 import { BotModule } from './bot/bot.module';
 import { Bot } from './bot/entities/bot.entities';
+import { AlarmModule } from './alarm/alarm.module';
 
 const envConfig = {
   envFilePath: `.${process.env.NODE_ENV}.env`,
@@ -27,6 +28,7 @@ const envConfig = {
     UserModule,
     AuthModule,
     BotModule,
+    AlarmModule,
   ],
 })
 export class AppModule {
