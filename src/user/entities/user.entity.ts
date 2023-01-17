@@ -1,4 +1,5 @@
 import { Bot } from 'src/bot/entities/bot.entities';
+import { HouseholdLedger } from 'src/household-ledger/entities/household-ledger.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { LoginType } from '../type/login-type.type';
 
@@ -30,4 +31,7 @@ export class User {
 
   @OneToMany(() => Bot, (bot) => bot.user)
   bots: Bot[];
+
+  @OneToMany(() => HouseholdLedger, (householdLedger) => householdLedger.user)
+  householdLedger: HouseholdLedger[];
 }
